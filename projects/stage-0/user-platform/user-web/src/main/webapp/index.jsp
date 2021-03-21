@@ -5,7 +5,8 @@
 </head>
 <body>
 	<div class="container-lg">
-		<!-- Content here -->
-		Hello,World 2021
+		<%
+			response.getWriter().println("application.name" +"=" + request.getAttribute("applicationName"));
+		%>
 	</div>
 </body>

@@ -10,3 +10,15 @@
 	- MBean注册代码org.geektimes.projects.user.web.listener.TestingListener#registerMBean
 - 需求二
 	- 请看测试类`ConfigProviderResolverDemo`
+	
+	
+### 第四周作业
+- 代码分支  week_04
+- 需求一：完善 my dependency-injection 模块
+	- ContainerInitializer
+	- 运行程序访问 http://localhost:8080/register
+- 需求二：完善 my-configuration 模块
+	- 在FrontControllerServlet#service方法中分别为servletContext和Thread设置config
+	- 访问 http://localhost:8080/hello/world 可以获取application.name属性值
+	
+	

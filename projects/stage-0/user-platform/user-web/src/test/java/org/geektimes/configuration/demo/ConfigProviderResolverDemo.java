@@ -3,8 +3,6 @@ package org.geektimes.configuration.demo;
 
 import org.eclipse.microprofile.config.Config;
 import org.eclipse.microprofile.config.spi.ConfigProviderResolver;
-import org.geektimes.configuration.microprofile.config.source.LocalConfigSource;
-import org.geektimes.configuration.microprofile.config.source.SystemEnvironmentConfigSource;
 import org.junit.Test;
 
 
@@ -12,9 +10,6 @@ public class ConfigProviderResolverDemo {
 
     /**
      * 测试获取所有的属性值，包括系统属性、系统环境变量、本地文件配置
-     *
-     * {@link SystemEnvironmentConfigSource}
-     * {@link LocalConfigSource}
      */
     @Test
     public void test() {

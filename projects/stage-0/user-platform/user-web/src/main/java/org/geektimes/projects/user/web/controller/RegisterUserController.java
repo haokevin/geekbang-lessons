@@ -3,11 +3,8 @@ package org.geektimes.projects.user.web.controller;
 import org.geektimes.context.ComponentContext;
 import org.geektimes.projects.user.domain.User;
 import org.geektimes.projects.user.service.UserService;
-import org.geektimes.projects.user.service.impl.UserServiceImpl;
 import org.geektimes.web.mvc.controller.PageController;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.GET;
@@ -26,7 +23,7 @@ public class RegisterUserController implements PageController {
 
         User user = new User();
 
-        user.setId(0L);
+        user.setId(2L);
         user.setName(request.getParameter("name"));
         user.setPassword(request.getParameter("password"));
         user.setEmail(request.getParameter("email"));

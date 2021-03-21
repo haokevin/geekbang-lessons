@@ -1,5 +1,6 @@
 package org.geektimes.projects.user.web.controller;
 
+import org.geektimes.web.mvc.FrontControllerServlet;
 import org.geektimes.web.mvc.controller.PageController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,9 +16,10 @@ import javax.ws.rs.Path;
 public class HelloWorldController implements PageController {
 
     @GET
-    @POST
     @Path("/world") // /hello/world -> HelloWorldController
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+        String applicationName = FrontControllerServlet.getConfig().getValue("application.name", String.class);
+        request.setAttribute("applicationName", applicationName);
         return "index.jsp";
     }
 }

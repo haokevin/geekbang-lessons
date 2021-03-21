@@ -1,6 +1,8 @@
 package org.geektimes.web.mvc;
 
 import org.apache.commons.lang.StringUtils;
+import org.eclipse.microprofile.config.Config;
+import org.eclipse.microprofile.config.spi.ConfigProviderResolver;
 import org.geektimes.web.mvc.controller.Controller;
 import org.geektimes.web.mvc.controller.PageController;
 import org.geektimes.web.mvc.controller.RestController;
@@ -29,15 +31,19 @@ import static org.apache.commons.lang.StringUtils.substringAfter;
 
 public class FrontControllerServlet extends HttpServlet {
 
+    private static final String SERVLET_CONFIG = "Servlet_Config";
+
+    private static final ThreadLocal<Config> configThreadLocal = new ThreadLocal<>();
+
     /**
      * 请求路径和 Controller 的映射关系缓存
      */
-    private Map<String, Controller> controllersMapping = new HashMap<>();
+    private final Map<String, Controller> controllersMapping = new HashMap<>();
 
     /**
      * 请求路径和 {@link HandlerMethodInfo} 映射关系缓存
      */
-    private Map<String, HandlerMethodInfo> handleMethodInfoMapping = new HashMap<>();
+    private final Map<String, HandlerMethodInfo> handleMethodInfoMapping = new HashMap<>();
 
     /**
      * 初始化 Servlet
@@ -137,6 +143,12 @@ public class FrontControllerServlet extends HttpServlet {
                     }
 
                     if (controller instanceof PageController) {
+                        ServletContext servletContext = request.getServletContext();
+                        // 设置Config
+                        Config config = ConfigProviderResolver.instance().getConfig(servletContext.getClassLoader());
+                        servletContext.setAttribute(SERVLET_CONFIG, config);
+                        configThreadLocal.set(config);
+
                         PageController pageController = PageController.class.cast(controller);
                         String viewPath = pageController.execute(request, response);
                         // 页面请求 forward
@@ -144,7 +156,6 @@ public class FrontControllerServlet extends HttpServlet {
                         // RequestDispatcher requestDispatcher = request.getRequestDispatcher(viewPath);
                         // ServletContext -> RequestDispatcher forward
                         // ServletContext -> RequestDispatcher 必须以 "/" 开头
-                        ServletContext servletContext = request.getServletContext();
                         if (!viewPath.startsWith("/")) {
                             viewPath = "/" + viewPath;
                         }
@@ -167,7 +178,11 @@ public class FrontControllerServlet extends HttpServlet {
         }
     }
 
-//    private void beforeInvoke(Method handleMethod, HttpServletRequest request, HttpServletResponse response) {
+    public static Config getConfig() {
+        return configThreadLocal.get();
+    }
+
+    //    private void beforeInvoke(Method handleMethod, HttpServletRequest request, HttpServletResponse response) {
 //
 //        CacheControl cacheControl = handleMethod.getAnnotation(CacheControl.class);
 //
