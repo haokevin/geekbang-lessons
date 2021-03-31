@@ -7,7 +7,6 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Variant;
 
 
 public class RestClientDemo {
@@ -28,15 +27,16 @@ public class RestClientDemo {
 
     @Test
     public void testPost() {
-        User user = new User("kevin", 28);
-        Entity entity = Entity.entity(user, "application/json");
+        User user = new User("shenhao11", 29);
+        Entity entity = Entity.json(user);
 
 
         Client client = ClientBuilder.newClient();
         Response response = client
-                .target("http://www.baidu.com")      // WebTarget
+                .target("http://localhost:8080/user/registerUser")      // WebTarget
                 .request() // Invocation.Builder
-                .post(entity);                                     //  Response
+                .header("Content-Type", "application/json")
+                .post(entity);                                  //  Response
 
         String content = response.readEntity(String.class);
 
