@@ -27,7 +27,7 @@ public class HttpSessionFilter implements Filter {
         MutableConfiguration<String, Map> config = new MutableConfiguration<String, Map>()
                 .setTypes(String.class, Map.class);
 
-        cache = cacheManager.createCache("http-session-cache", config);
+//        cache = cacheManager.createCache("http-session-cache", config);
 
     }
 
