@@ -27,3 +27,9 @@
 - 构造Post请求涉及类
 	- org.geektimes.rest.client.HttpPostInvocation
 	- org.geektimes.rest.demo.RestClientDemo#testPost
+	
+	
+### 第七周作业
+- 代码 https://github.com/haokevin/geekbang-lessons/tree/week07
+- 访问地址 http://localhost:8080/oauth2
+
