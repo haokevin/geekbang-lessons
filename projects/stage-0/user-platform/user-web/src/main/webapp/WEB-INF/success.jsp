@@ -5,6 +5,6 @@
 </head>
 <body>
 	<div class="container-lg">
-		注册成功!
+
 	</div>
 </body>

@@ -24,6 +24,11 @@
 
         <dependency>
             <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-jms</artifactId>
         </dependency>
 
@@ -164,6 +169,12 @@
             <groupId>org.jolokia</groupId>
             <artifactId>jolokia-client-java</artifactId>
             <version>1.6.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.73</version>
         </dependency>
 
     </dependencies>

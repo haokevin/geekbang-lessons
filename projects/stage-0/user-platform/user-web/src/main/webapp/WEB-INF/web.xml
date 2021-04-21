@@ -67,6 +67,28 @@
         <url-pattern>/jolokia/*</url-pattern>
     </servlet-mapping>
 
+    <!--让用户跳转到 GitHub-->
+    <servlet>
+        <servlet-name>AuthorizeController</servlet-name>
+        <servlet-class>org.geektimes.projects.user.web.controller.AuthorizeController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AuthorizeController</servlet-name>
+        <url-pattern>/authorize</url-pattern>
+    </servlet-mapping>
+
+    <!--    让用户跳转到 GitHub-->
+    <servlet>
+        <servlet-name>OAuth2CallbackController</servlet-name>
+        <servlet-class>org.geektimes.projects.user.web.controller.OAuth2CallbackController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>OAuth2CallbackController</servlet-name>
+        <url-pattern>/oauth2/callback</url-pattern>
+    </servlet-mapping>
+
     <filter>
         <filter-name>HttpSessionFilter</filter-name>
         <filter-class>org.geektimes.projects.user.web.filter.HttpSessionFilter</filter-class>
